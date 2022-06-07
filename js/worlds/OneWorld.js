@@ -2,8 +2,9 @@ import * as THREE from 'three';
 import World from '../systems/World.js';
 
 import HeartScenery from '../scenery/HeartScenery.js';
-import Heart from '../actors/Heart.js';
-import MySphere from '../props/MySphere.js';
+// import Heart from '../actors/Heart.js';
+// import MySphere from '../props/MySphere.js';
+import NorthTerminal from '../actors/NorthTerminal.js';
 
 export default class OneWorld extends World {
   constructor(stage) {
@@ -25,17 +26,23 @@ export default class OneWorld extends World {
   async init() {
     await super.init();
 
-    this.heart = new Heart();
-    await this.heart.init();
-    this.heart.model.position.y += 0.95;
-    this.stage.scene.add(this.heart.model);
+    this.term = new NorthTerminal();
+    await this.term.init();
+    this.term.model.position.set(392, -126, 740);
+    console.log(this.term);
+    this.stage.scene.add(this.term.model);
 
-    this.sphere = new MySphere();
-    await this.sphere.init();
-    this.sphere.model.position.x += 1;
-    this.sphere.model.position.y += 0.25;
-    this.sphere.model.castShadow = true;
-    this.stage.scene.add(this.sphere.model);
+    // this.heart = new Heart();
+    // await this.heart.init();
+    // this.heart.model.position.y += 0.95;
+    // this.stage.scene.add(this.heart.model);
+
+    // this.sphere = new MySphere();
+    // await this.sphere.init();
+    // this.sphere.model.position.x += 1;
+    // this.sphere.model.position.y += 0.25;
+    // this.sphere.model.castShadow = true;
+    // this.stage.scene.add(this.sphere.model);
   }
 
   update(time) {
