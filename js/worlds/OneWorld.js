@@ -2,21 +2,22 @@ import * as THREE from 'three';
 import World from '../systems/World.js';
 
 import HeartScenery from '../scenery/HeartScenery.js';
-// import Heart from '../actors/Heart.js';
-// import MySphere from '../props/MySphere.js';
 import NorthTerminal from '../actors/NorthTerminal.js';
 
 export default class OneWorld extends World {
   constructor(stage) {
     super(stage);
 
-    this.stage.camera.position.set(0, 1.6, 5);
+    this.stage.camera.position.set(0, 30, 150);
     this.stage.scene.background = new THREE.Color(0x493000);
 
     const hrtBgrd = new HeartScenery();
     this.hemi = hrtBgrd.hemilight;
     this.light = hrtBgrd.light;
     this.plane = hrtBgrd.plane;
+    this.plane.material.color = new THREE.Color(0x448844);
+    const scalar = new THREE.Matrix4().makeScale(50, 50, 50);
+    this.plane.applyMatrix4(scalar);
     this.stage.scene.add(this.hemi, this.light, this.plane);
 
     this.heart = {};
@@ -31,18 +32,6 @@ export default class OneWorld extends World {
     this.term.model.position.set(392, -126, 740);
     console.log(this.term);
     this.stage.scene.add(this.term.model);
-
-    // this.heart = new Heart();
-    // await this.heart.init();
-    // this.heart.model.position.y += 0.95;
-    // this.stage.scene.add(this.heart.model);
-
-    // this.sphere = new MySphere();
-    // await this.sphere.init();
-    // this.sphere.model.position.x += 1;
-    // this.sphere.model.position.y += 0.25;
-    // this.sphere.model.castShadow = true;
-    // this.stage.scene.add(this.sphere.model);
   }
 
   update(time) {
